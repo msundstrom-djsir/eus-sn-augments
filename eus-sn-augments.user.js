@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DJSIR ServiceNow Hardware Order Augments
 // @namespace    https://djpr.service-now.com/
-// @version      0.4.1
+// @version      0.5.0
 // @description  Adds shortcuts to DJSIR ServiceNow Hardware fulfillment page
 // @author       Michell Sundstrom
 // @match        https://djpr.service-now.com/*
@@ -30,6 +30,10 @@
     }
 
     function main() {
+        //
+        // Setup
+        //
+
         let variableContainer = document.querySelector(".veditor_body");
 
         if (!variableContainer) {
@@ -66,7 +70,9 @@
         let ritmNumber = document.getElementById("sys_readonly.sc_req_item.number").value;
         let isReplacementOrder = document.querySelector('input[value="replace_old_pc_peripherals"]').checked;
 
-        console.log(formValues);
+        //
+        // Hardware summary
+        //
 
         let outputTextUserInfo = `Requested for: ${formValues["Requested for"]}
 Contact number: ${formValues["Contact Number"]}
@@ -101,8 +107,78 @@ Requested hardware:
 
         insertAfter(outputContainer, variableContainer);
 
+        //
+        // Hardware table
+        //
+        let hardwareList = [];
+        for (const key in hardwareValues) {
+            if (parseInt(hardwareValues[key]) > 0) {
+                hardwareList.push(`${hardwareValues[key]} x ${key}`);
+            };
+        };
+        let tableData = {
+            "Name": formValues["Requested for"],
+            "Request ID": ritmNumber,
+            "Order": hardwareList.join(", "),
+            "Peripherals": formValues["Other Hardware Not Listed"],
+            "Contact Number": `'${formValues["Contact Number"]}`,
+            "Address": formValues["Delivery Address"],
+            "Labels": " ",
+            "Company": "Department of Jobs, Skills, Industry and Regions",
+            "Charge Code": formValues["Charge Code"]
+        };
+
+        let tableEl = document.createElement("table");
+        let tbodyEl = document.createElement("tbody");
+        for (const field in tableData) {
+            let tr = document.createElement("tr");
+            let keyCell = document.createElement("td");
+            let valueCell = document.createElement("td");
+
+            keyCell.appendChild(document.createTextNode(field));
+            valueCell.appendChild(document.createTextNode(tableData[field]));
+
+            keyCell.style["font-size"] = "11pt";
+            keyCell.style["font-family"] = "Calibri";
+            valueCell.style["font-size"] = "11pt";
+            valueCell.style["font-family"] = "Calibri";
+
+            if (["Order", "Peripherals"].includes(field)) {
+                tr.style["background-color"] = "#8ea9db";
+            };
+
+            tr.appendChild(keyCell);
+            tr.appendChild(valueCell);
+            tbodyEl.appendChild(tr);
+        };
+        tableEl.appendChild(tbodyEl);
+
+        tableEl.style["background-color"] = "#b4c6e7";
+        tableEl.style.position = "absolute";
+        tableEl.style.top = "-99999px";
+        tableEl.style.left = "-99999px";
+
+        insertAfter(tableEl, outputContainer);
+
+        let copyBtn = document.createElement("button");
+        copyBtn.className = `icon-copy btn-default btn`;
+        copyBtn.style.float = "right";
+        copyBtn.style["margin-top"] = "5px";
+        copyBtn.setAttribute("type", "button");
+        copyBtn.setAttribute("title", "Copy Outgoing Order");
+
+        copyBtn.addEventListener("click", () => {
+            selectElementContents(tableEl);
+        }, false);
+
+        insertAfter(copyBtn, tableEl);
+
+        //
+        // Auto responses
+        //
+
         let requestForFirstName = formValues["Requested for"].split(" ")[0];
-        let collectBy = (new Date(Date.now() + 12096e5)).toLocaleDateString("en-AU");
+        let collectBy = new Date(Date.now() + (6.048e+8 * 2)).toLocaleDateString("en-AU");
         let autoResponseContainer = document.createElement("div");
         autoResponseContainer.className = "col-xs-2 col-md-1_5 col-lg-2 form-field-addons form-toggle-inputs";
 
@@ -196,6 +272,8 @@ For information regarding setting up a new department laptop, please refer the f
             autoBtn.className = `${autoResponses[i].icon} btn-default btn`;
             autoBtn.setAttribute("type", "button");
             autoBtn.setAttribute("title", autoResponses[i].title);
+            autoBtn.style["margin-left"] = 0;
+            autoBtn.style["margin-bottom"] = "5px";
 
             autoBtn.addEventListener("click", () => {
                 let custComments = document.getElementById("activity-stream-comments-textarea");
@@ -223,4 +301,31 @@ For information regarding setting up a new department laptop, please refer the f
     let iframeReady = false;
 
     main();
+
+
+    //
+    // Utils
+    //
+
+    function selectElementContents(el) {
+        var body = document.body, range, sel;
+        if (document.createRange && window.getSelection) {
+            range = document.createRange();
+            sel = window.getSelection();
+            sel.removeAllRanges();
+            try {
+                range.selectNodeContents(el);
+                sel.addRange(range);
+                document.execCommand("copy");
+            } catch (e) {
+                range.selectNode(el);
+                sel.addRange(range);
+                document.execCommand("copy");
+            }
+        } else if (body.createTextRange) {
+            range = body.createTextRange();
+            range.moveToElementText(el);
+            range.select();
+        };
+    };
 })();
