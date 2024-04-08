@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         DJSIR ServiceNow Hardware Order Augments
 // @namespace    https://djpr.service-now.com/
-// @version      0.5.0
+// @version      0.5.1
 // @description  Adds shortcuts to DJSIR ServiceNow Hardware fulfillment page
 // @author       Michell Sundstrom
 // @match        https://djpr.service-now.com/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+// @updateURL    https://github.com/msundstrom-djsir/eus-sn-augments/raw/main/eus-sn-augments.user.js
+// @downloadURL  https://github.com/msundstrom-djsir/eus-sn-augments/raw/main/eus-sn-augments.user.js
 // @grant        none
 // ==/UserScript==
 
