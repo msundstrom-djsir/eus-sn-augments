@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DJSIR ServiceNow Hardware Disposal
 // @namespace    https://djpr.service-now.com/
-// @version      0.1.0
+// @version      0.2.0
 // @description  Adds shortcuts to DJSIR ServiceNow Hardware Asset Page
 // @author       Michell Sundstrom
 // @match        https://djpr.service-now.com/*
@@ -75,10 +75,10 @@
                 fieldInstallStatus.value = 7;
                 fieldInstallStatus.dispatchEvent(new Event("change"));
                 fieldDisposalReason.value = disposalTypes[i].disposal_reason;
-                fieldDisposalDate.value = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString().padStart(2, 0) + '-' + date.getDate().toString().padStart(2, 0);
+                fieldDisposalDate.value = date.getDate().toString().padStart(2, 0) + '-' + (date.getMonth() + 1).toString().padStart(2, 0) + '-' + date.getFullYear().toString();
                 setTimeout(() => {
                     fieldInstallSubStatus.value = "disposed";
-                }, 100);
+                }, 300);
             }, false);
 
             navbarUpdateBtn.parentNode.insertBefore(btnAction, navbarUpdateBtn);
