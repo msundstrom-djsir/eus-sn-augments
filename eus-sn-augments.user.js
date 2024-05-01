@@ -5,6 +5,8 @@
 // @description  Adds shortcuts to DJSIR ServiceNow Hardware fulfillment page
 // @author       Michell Sundstrom
 // @match        https://djpr.service-now.com/*
+// @match        https://djprdev.service-now.com/*
+// @match        https://djpruat.service-now.com/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @updateURL    https://github.com/msundstrom-djsir/eus-sn-augments/raw/main/eus-sn-augments.user.js
 // @downloadURL  https://github.com/msundstrom-djsir/eus-sn-augments/raw/main/eus-sn-augments.user.js
