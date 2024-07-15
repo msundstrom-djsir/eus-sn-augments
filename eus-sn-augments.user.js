@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DJSIR ServiceNow Hardware Order Augments
 // @namespace    https://djpr.service-now.com/
-// @version      0.5.2
+// @version      0.5.3
 // @description  Adds shortcuts to DJSIR ServiceNow Hardware fulfillment page
 // @author       Michell Sundstrom
 // @match        https://djpr.service-now.com/*
@@ -49,9 +49,13 @@
             return false;
         };
 
+        let isCellularOrder = false;
         let cellularXPath = "//label[text()='I have a data SIM and require a SIM slot/4G connection - $150.00']";
-        let cellularLabelId = document.evaluate(cellularXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.getAttribute("for");
-        let isCellularOrder = document.getElementById(cellularLabelId).checked;
+        let cellularLabel = document.evaluate(cellularXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+        if (cellularLabel) {
+            let cellularLabelId = cellularLabel.getAttribute("for");
+            isCellularOrder = document.getElementById(cellularLabelId).checked;
+        }
 
         let formFields = variableContainer.querySelectorAll(".form-control");
 
