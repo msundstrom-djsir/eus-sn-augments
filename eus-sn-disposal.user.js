@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DJSIR ServiceNow Hardware Disposal
 // @namespace    https://djpr.service-now.com/
-// @version      0.2.1
+// @version      0.2.2
 // @description  Adds shortcuts to DJSIR ServiceNow Hardware Asset Page
 // @author       Michell Sundstrom
 // @match        https://djpr.service-now.com/*
@@ -39,7 +39,7 @@
         //
 
         let itemType = document.getElementById("alm_hardware.model_category_label");
-        if (itemType.value !== "Computer") {
+        if (!itemType || itemType.value !== "Computer") {
             return false;
         };
 
