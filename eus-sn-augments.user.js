@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DJSIR ServiceNow Hardware Order Augments
 // @namespace    https://djpr.service-now.com/
-// @version      0.5.3
+// @version      0.5.4
 // @description  Adds shortcuts to DJSIR ServiceNow Hardware fulfillment page
 // @author       Michell Sundstrom
 // @match        https://djpr.service-now.com/*
@@ -199,27 +199,40 @@ Requested hardware:
         let futureEstimateDate = new Date(Date.now() + (6.048e+8 * 6)).toLocaleDateString("en-AU");
         let autoResponseContainer = document.createElement("div");
         autoResponseContainer.className = "col-xs-2 col-md-1_5 col-lg-2 form-field-addons form-toggle-inputs";
+        let unlockCode = ritmNumber.substr(ritmNumber.length - 4);
 
         const autoResponses = [
             {
                 "icon": "icon-user",
-                "title": "1 Spring Street Collection",
+                "title": "121 Exhibition St Lockers",
+                "text": `Hi ${requestForFirstName},
+
+Your requested hardware is now available for you to collect from the Level 31 IT Collection lockers.
+
+To find the lockers from the Level 31 lift lobby, exit on the Sports and Experience Economy side, opposite the large kitchen. Turn left in to the corridor. The collection lockers are located opposite room 31.28. Additional details and visual instructions can be found here: <a title='KB0011364 : Where do I collect my computer hardware orders from at 121 Exhibition Street?' href='https://djpr.service-now.com/sp?id=kb_article_view&sysparm_article=KB0011364'>KB0011364 : Where do I collect my computer hardware orders from at 121 Exhibition Street?</a>
+
+Locker: 00
+Code: ${unlockCode}
+
+If you need assistance please visit the Corporate Support Team on Level 32, Monday to Thursday between 9:30 am and 4:00 pm.`
+            },
+            {
+                "icon": "icon-user",
+                "title": "121 Exhibition St Corporate Support",
                 "text": `Hi ${requestForFirstName},
 
 Your requested hardware is now available for you to collect.
 
-Please see the Corporate Support Team on Level 7, Monday to Thursday between 9:30 am and 3:00 pm by ${collectBy} to collect your equipment. Please have your name and request number (${ritmNumber}) ready.`
+Please see the Corporate Support Team on Level 32, Monday to Thursday between 9:30 am and 3:00 pm by ${collectBy} to collect your equipment. Please have your name and request number (${ritmNumber}) ready.`
             },
             {
                 "icon": "icon-user-group",
-                "title": "121 Exhibition Street Collection",
+                "title": "121 Exhibition St Mail Room",
                 "text": `Hi ${requestForFirstName},
 
 Your requested hardware is now available for you to collect.
 
-Due to the current changes to the Mail Centre operations at Exhibition Street, this will need to be collected from the Corporate Support Team at 1 Spring Street, Melbourne, Monday to Thursday between 9:30 am and 3:00 pm by ${collectBy}.
-
-Once you arrive at the 1 Spring Street lobby please call 1800 370 724 and let them know that you are collecting hardware. Please quote your name and ${ritmNumber} as your request number.`
+This can be collected from the Level 32 Mail Centre, Monday to Friday between 1:30 pm and 2:00 pm by ${collectBy}. Please quote your name and ${ritmNumber} as your request number.`
             },
             {
                 "icon": "icon-cards",
@@ -228,9 +241,9 @@ Once you arrive at the 1 Spring Street lobby please call 1800 370 724 and let th
 
 Your requested hardware is now available for you to collect.
 
-This will need to be collected from the Corporate Support Team at 1 Spring Street, Melbourne, Monday to Thursday between 9:30 am and 3:00 pm by ${collectBy}.
+This will need to be collected from the Corporate Support Team at 121 Exhibition Street, Melbourne, Monday to Thursday between 9:30 am and 3:00 pm by ${collectBy}.
 
-Once you arrive at the 1 Spring Street lobby please call 1800 370 724 and let them know that you are collecting hardware. Please quote your name and ${ritmNumber} as your request number.`
+Once you arrive at the 121 Exhibition Street lobby please call 1800 370 724 and let them know that you are collecting hardware. Please quote your name and ${ritmNumber} as your request number.`
             },
             {
                 "icon": "icon-cart-full",
@@ -247,22 +260,23 @@ Your requested hardware has been dispatched via TNT courier. Tracking is availab
 
 Please provide an office delivery address for this request.
 
-We are unable to deliver to home addresses or PO boxes.
-
-Please note that for CBD offices, collection will be required from 1 Spring Street, Melbourne.`
+We are unable to deliver to home addresses or PO boxes.`
             },
             {
                 "icon": "icon-info",
                 "title": "Collection Reminder",
                 "text": `Hi ${requestForFirstName},
 
-This is a reminder that you have uncollected hardware waiting for you at 1 Spring Street.
+This is a reminder that you have uncollected hardware waiting for you at the Level 31 IT Collection lockers.
 
-This will need to be collected from the Corporate Support Team at Level 7, 1 Spring Street, Melbourne, Monday to Thursday between 9:30 am and 3:00 pm by ${collectBy}.
+To find the lockers from the Level 31 lift lobby, exit on the Sports and Experience Economy side, opposite the large kitchen. Turn left in to the corridor. The collection lockers are located opposite room 31.28. Additional details and visual instructions can be found here: <a title='KB0011364 : Where do I collect my computer hardware orders from at 121 Exhibition Street?' href='https://djpr.service-now.com/sp?id=kb_article_view&sysparm_article=KB0011364'>KB0011364 : Where do I collect my computer hardware orders from at 121 Exhibition Street?</a>
 
-If you do not have access to 1 Spring Street, once you arrive at the 1 Spring Street lobby please call 1800 370 724 and let them know that you are collecting hardware. Please quote your name and ${ritmNumber} as your request number.
+Locker: 00
+Code: ${unlockCode}
 
-Please make it a priority to collect this equipment as soon as possible. If you are having difficulty collecting this equipment, please call 1800 370 724 to make alternate arrangements.`
+If you need assistance please visit the Corporate Support Team on Level 32, Monday to Thursday between 9:30 am and 4:00 pm.
+
+Please make it a priority to collect this equipment as soon as possible. If you are having difficulty collecting this equipment, please call the Corporate Support Team on 1800 370 724 to make alternate arrangements.`
             },
             {
                 "icon": "icon-info",
