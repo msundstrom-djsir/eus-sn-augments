@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DJSIR ServiceNow Hardware Order Augments
 // @namespace    https://djpr.service-now.com/
-// @version      0.5.4
+// @version      0.5.5
 // @description  Adds shortcuts to DJSIR ServiceNow Hardware fulfillment page
 // @author       Michell Sundstrom
 // @match        https://djpr.service-now.com/*
@@ -84,7 +84,7 @@
             };
         };
 
-        let ritmNumber = document.getElementById("sys_readonly.sc_req_item.number").value;
+        let ritmNumber = document.getElementById("sc_req_item.number").value;
         let isReplacementOrder = document.querySelector('input[value="replace_old_pc_peripherals"]').checked;
 
         //
