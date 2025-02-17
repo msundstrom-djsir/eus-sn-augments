@@ -79,7 +79,7 @@
                 fieldDisposalReason.value = disposalTypes[i].disposal_reason;
                 fieldDisposalDate.value = date.getDate().toString().padStart(2, 0) + '-' + (date.getMonth() + 1).toString().padStart(2, 0) + '-' + date.getFullYear().toString();
                 setTimeout(() => {
-                    fieldInstallSubStatus.value = "disposed";
+                    fieldInstallSubStatus.value = "pending_disposal";
                 }, 300);
             }, false);
 
