@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DJSIR ServiceNow Hardware Disposal
 // @namespace    https://djpr.service-now.com/
-// @version      0.2.2
+// @version      0.2.5
 // @description  Adds shortcuts to DJSIR ServiceNow Hardware Asset Page
 // @author       Michell Sundstrom
 // @match        https://djpr.service-now.com/*
