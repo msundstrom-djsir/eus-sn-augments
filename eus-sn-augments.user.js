@@ -62,7 +62,7 @@
         variableContainer.querySelector("#img_c3cb6fa287ef15101a5cbae8dabb35c5").click();
         let formWhitelist = ["Requested for", "Contact Number", "Delivery Address", "Old Computer Name",
                              "Replacement or Upgrade","Other Justification", "Commencement Date", "Additional comments",
-                             "Charge Code", "Select Financial Delegate", "Other Hardware Not Listed"];
+                             "Charge Code", "Select Financial Delegate", "Other Hardware Not Listed", "Financial delegate", "Charge code"];
         let formValues = {};
         let hardwareValues = {};
         for (let i in formFields) {
@@ -95,8 +95,8 @@
 Contact number: ${formValues["Contact Number"]}
 Delivery address: ${formValues["Delivery Address"]}
 
-Charge code: ${formValues["Charge Code"]}
-Financial delegate: ${formValues["Select Financial Delegate"]}
+Charge code: ${formValues["Charge Code"] || formValues["Charge code"]}
+Financial delegate: ${formValues["Select Financial Delegate"] || formValues["Financial delegate"]}
 
 Commencement date: ${formValues["Commencement Date"]}
 Old computer name: ${formValues["Old Computer Name"]}
@@ -192,6 +192,7 @@ Requested hardware:
 
         //
         // Auto responses
+        // https://djpr.service-now.com/styles/retina_icons/retina_icons.html
         //
 
         let requestForFirstName = formValues["Requested for"].split(" ")[0];
@@ -203,13 +204,13 @@ Requested hardware:
 
         const autoResponses = [
             {
-                "icon": "icon-user",
-                "title": "121 Exhibition St Lockers",
+                "icon": "icon-envelope-open",
+                "title": "Collection via 121.31 Lockers",
                 "text": `Hi ${requestForFirstName},
 
 Your requested hardware is now available for you to collect from the Level 31 IT Collection lockers.
 
-To find the lockers from the Level 31 lift lobby, exit on the Sports and Experience Economy side, opposite the large kitchen. Turn left in to the corridor. The collection lockers are located opposite room 31.28. Additional details and visual instructions can be found here: <a title='KB0011364 : Where do I collect my computer hardware orders from at 121 Exhibition Street?' href='https://djpr.service-now.com/sp?id=kb_article_view&sysparm_article=KB0011364'>KB0011364 : Where do I collect my computer hardware orders from at 121 Exhibition Street?</a>
+To find the lockers from the Level 31 lift lobby, exit on the Sports and Experience Economy/Exhibition Street side. Turn left in to the corridor and look for the 'Tech Shop' sign between the seating booths. Additional details and visual instructions can be found here: <a title='KB0011364 : Where do I collect my computer hardware orders from at 121 Exhibition Street?' href='https://djpr.service-now.com/sp?id=kb_article_view&sysparm_article=KB0011364'>KB0011364 : Where do I collect my computer hardware orders from at 121 Exhibition Street?</a>
 
 Locker: 00
 Code: ${unlockCode}
@@ -217,8 +218,8 @@ Code: ${unlockCode}
 If you need assistance please visit the Corporate Support Team on Level 32, Monday to Thursday between 9:30 am and 4:00 pm.`
             },
             {
-                "icon": "icon-user",
-                "title": "121 Exhibition St Corporate Support",
+                "icon": "icon-envelope-subscribe",
+                "title": "Collection via 121.32 Corporate Support",
                 "text": `Hi ${requestForFirstName},
 
 Your requested hardware is now available for you to collect.
@@ -226,8 +227,8 @@ Your requested hardware is now available for you to collect.
 Please see the Corporate Support Team on Level 32, Monday to Thursday between 9:30 am and 3:00 pm by ${collectBy} to collect your equipment. Please have your name and request number (${ritmNumber}) ready.`
             },
             {
-                "icon": "icon-user-group",
-                "title": "121 Exhibition St Mail Room",
+                "icon": "icon-mail",
+                "title": "Collection via 121.32 Mail Room",
                 "text": `Hi ${requestForFirstName},
 
 Your requested hardware is now available for you to collect.
@@ -235,8 +236,8 @@ Your requested hardware is now available for you to collect.
 This can be collected from the Level 32 Mail Centre, Monday to Friday between 1:30 pm and 2:00 pm by ${collectBy}. Please quote your name and ${ritmNumber} as your request number.`
             },
             {
-                "icon": "icon-cards",
-                "title": "Other CBD Collection",
+                "icon": "icon-phonecall-incoming",
+                "title": "Collection via 121 Lobby (external)",
                 "text": `Hi ${requestForFirstName},
 
 Your requested hardware is now available for you to collect.
@@ -247,13 +248,13 @@ Once you arrive at the 121 Exhibition Street lobby please call 1800 370 724 and 
             },
             {
                 "icon": "icon-cart-full",
-                "title": "Dispatched via TNT",
+                "title": "Delivery Dispatched via TNT",
                 "text": `Hi ${requestForFirstName},
 
 Your requested hardware has been dispatched via TNT courier. Tracking is available at https://www.tnt.com/express/en_au/site/shipping-tools/tracking.html?searchType=con&cons=XXXXXXXXX`
             },
             {
-                "icon": "icon-help",
+                "icon": "icon-location",
                 "title": "Revise Delivery Address",
                 "excludeLaptopMsg": true,
                 "text": `Hi ${requestForFirstName},
@@ -263,35 +264,35 @@ Please provide an office delivery address for this request.
 We are unable to deliver to home addresses or PO boxes.`
             },
             {
-                "icon": "icon-info",
-                "title": "Collection Reminder",
+                "icon": "icon-notification-bell",
+                "title": "Reminder of Collection via 121.31 Lockers",
                 "text": `Hi ${requestForFirstName},
 
 This is a reminder that you have uncollected hardware waiting for you at the Level 31 IT Collection lockers.
 
-To find the lockers from the Level 31 lift lobby, exit on the Sports and Experience Economy side, opposite the large kitchen. Turn left in to the corridor. The collection lockers are located opposite room 31.28. Additional details and visual instructions can be found here: <a title='KB0011364 : Where do I collect my computer hardware orders from at 121 Exhibition Street?' href='https://djpr.service-now.com/sp?id=kb_article_view&sysparm_article=KB0011364'>KB0011364 : Where do I collect my computer hardware orders from at 121 Exhibition Street?</a>
+To find the lockers from the Level 31 lift lobby, exit on the Sports and Experience Economy/Exhibition Street side. Turn left in to the corridor and look for the 'Tech Shop' sign between the seating booths. Additional details and visual instructions can be found here: <a title='KB0011364 : Where do I collect my computer hardware orders from at 121 Exhibition Street?' href='https://djpr.service-now.com/sp?id=kb_article_view&sysparm_article=KB0011364'>KB0011364 : Where do I collect my computer hardware orders from at 121 Exhibition Street?</a>
 
 Locker: 00
 Code: ${unlockCode}
 
 If you need assistance please visit the Corporate Support Team on Level 32, Monday to Thursday between 9:30 am and 4:00 pm.
 
-Please make it a priority to collect this equipment as soon as possible. If you are having difficulty collecting this equipment, please call the Corporate Support Team on 1800 370 724 to make alternate arrangements.`
+Please make it a priority to collect this equipment as soon as possible. If you are having difficulty collecting this equipment, please call the Corporate Support Team on 1800 370 724 to make alternate arrangements.
+
+If the equipment is no longer required please let us know via return email.`
             },
             {
-                "icon": "icon-info",
-                "title": "Surface Pro Advice",
-                "show": false,
+                "icon": "icon-alert-triangle",
+                "title": "Windows 11 Delay",
+                "show": true,
                 "excludeLaptopMsg": true,
                 "text": `Hi ${requestForFirstName},
 
-The Surface Pro is not currently available.
+We regret to inform you that your request has been delayed. It is now expected by 28-03-2024.
 
-We are expecting new stock by ${futureEstimateDate}.
+If your request includes peripherals such as a keyboard bundle or headset that you would like to receive earlier, please let us know by replying to this message.
 
-We recommend changing this order to the Dell Latitude instead for which we have stock available. Please let us know by replying to this message if you would like to us to change your request.
-
-<a title='KB0010714 : Desktop IT Hardware Catalogue 2024' href='https://djpr.service-now.com/sp?id=kb_article_view&sysparm_article=KB0010714'>KB0010714 : Desktop IT Hardware Catalogue 2024</a>`
+Thank you for your patience.`
             }
         ];
         const hardwareThatIncludesLaptop = ["Dell Latitude Starter Pack", "Dell Latitude Laptop", "Dell Latitude Laptop (4G)", "MS Surface Pro", "Microsoft Surface Pro Starter Pack"];
@@ -311,10 +312,12 @@ If this order is replacing old computer equipment, please find information on re
 For information regarding setting up a new department laptop, please refer the following article: <a title='How do I get started with my new department laptop?' href='https://djpr.service-now.com/sp?id=kb_article&sysparm_article=KB0011192'>KB0011192 : How do I get started with my new department laptop?</a>`;
         const autoResponseIsCellularMessage = `
 
-If you do not currently have a 4G data SIM card for this laptop you will need to request one separately here: <a title='New Mobile Device Order Form' href='https://djpr.service-now.com/sp?id=kb_article&sysparm_article=KB0010147'>KB0010147 : New Mobile Device Order Form</a>`;
+If you do not currently have a 4G data SIM card for this laptop you will need to request one separately here: <a title='New Mobile Device Order Form' href='https://djpr.service-now.com/sp?id=sc_cat_item&sys_id=cdbe936187827150d1c98407dabb3554&sysparm_category=66d00feadbf7d010764bcae43a9619a4'>Mobile Device Order Form</a>`;
 
         const autoResponseHeading = document.createElement("h6");
         autoResponseHeading.textContent = "Quick Replies";
+        autoResponseHeading.style["display"] = "block";
+        autoResponseHeading.style["width"] = "100%";
         autoResponseContainer.appendChild(autoResponseHeading);
 
         for (let i = 0; i < autoResponses.length; i++) {
