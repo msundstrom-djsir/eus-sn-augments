@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DJSIR ServiceNow Hardware Order Augments
 // @namespace    https://djpr.service-now.com/
-// @version      0.5.5
+// @version      0.5.6
 // @description  Adds shortcuts to DJSIR ServiceNow Hardware fulfillment page
 // @author       Michell Sundstrom
 // @match        https://djpr.service-now.com/*
@@ -62,7 +62,7 @@
         variableContainer.querySelector("#img_c3cb6fa287ef15101a5cbae8dabb35c5").click();
         let formWhitelist = ["Requested for", "Contact Number", "Delivery Address", "Old Computer Name",
                              "Replacement or Upgrade","Other Justification", "Commencement Date", "Additional comments",
-                             "Charge Code", "Select Financial Delegate", "Other Hardware Not Listed", "Financial delegate", "Charge code"];
+                             "Charge Code", "Select Financial Delegate", "Other Hardware Not Listed", "Financial delegate", "Charge code", "Legacy Charge Code", "Legacy Select Financial Delegate"];
         let formValues = {};
         let hardwareValues = {};
         for (let i in formFields) {
@@ -95,8 +95,8 @@
 Contact number: ${formValues["Contact Number"]}
 Delivery address: ${formValues["Delivery Address"]}
 
-Charge code: ${formValues["Charge Code"] || formValues["Charge code"]}
-Financial delegate: ${formValues["Select Financial Delegate"] || formValues["Financial delegate"]}
+Charge code: ${formValues["Charge Code"] || formValues["Charge code"] || formValues["Legacy Charge Code"]}
+Financial delegate: ${formValues["Select Financial Delegate"] || formValues["Financial delegate"] || formValues["Legacy Select Financial Delegate"]}
 
 Commencement date: ${formValues["Commencement Date"]}
 Old computer name: ${formValues["Old Computer Name"]}
