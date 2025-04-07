@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DJSIR ServiceNow Hardware Order Augments
 // @namespace    https://djpr.service-now.com/
-// @version      0.5.6
+// @version      0.5.7
 // @description  Adds shortcuts to DJSIR ServiceNow Hardware fulfillment page
 // @author       Michell Sundstrom
 // @match        https://djpr.service-now.com/*
@@ -95,7 +95,7 @@
 Contact number: ${formValues["Contact Number"]}
 Delivery address: ${formValues["Delivery Address"]}
 
-Charge code: ${formValues["Charge Code"] || formValues["Charge code"] || formValues["Legacy Charge Code"]}
+Charge code: ${formValues["Legacy Charge Code"] || formValues["Charge Code"] || formValues["Charge code"]}
 Financial delegate: ${formValues["Select Financial Delegate"] || formValues["Financial delegate"] || formValues["Legacy Select Financial Delegate"]}
 
 Commencement date: ${formValues["Commencement Date"]}
@@ -105,6 +105,8 @@ Other comments: ${formValues["Additional comments"]}
 
 Requested hardware:
 `;
+
+        console.log(formValues);
 
         for (const key in hardwareValues) {
             if (parseInt(hardwareValues[key]) > 0) {
@@ -142,7 +144,7 @@ Requested hardware:
             "Address": formValues["Delivery Address"],
             "Labels": " ",
             "Company": "Department of Jobs, Skills, Industry and Regions",
-            "Charge Code": formValues["Charge Code"]
+            "Charge Code": formValues["Legacy Charge Code"] || formValues["Charge Code"] || formValues["Charge code"]
         };
 
         let tableEl = document.createElement("table");
