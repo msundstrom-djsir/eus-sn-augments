@@ -290,9 +290,9 @@ If the equipment is no longer required please let us know via return email.`
                 "excludeLaptopMsg": true,
                 "text": `Hi ${requestForFirstName},
 
-We regret to inform you that your request has been delayed. It is now expected by 28-03-2024.
+We regret to inform you that your request has been delayed. It is now expected by 31-07-2025.
 
-If your request includes peripherals such as a keyboard bundle or headset that you would like to receive earlier, please let us know by replying to this message.
+If your request includes peripherals such as a keyboard bundle or headset that you would like to receive earlier or your request has now become critical to continuing business functions, please let us know by replying to this message.
 
 Thank you for your patience.`
             }
