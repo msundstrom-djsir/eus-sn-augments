@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DJSIR ServiceNow Hardware Order Augments
 // @namespace    https://djpr.service-now.com/
-// @version      0.5.7
+// @version      0.5.9
 // @description  Adds shortcuts to DJSIR ServiceNow Hardware fulfillment page
 // @author       Michell Sundstrom
 // @match        https://djpr.service-now.com/*
@@ -275,8 +275,6 @@ To find the lockers from the Level 31 lift lobby, exit on the Sports and Experie
 
 Locker: 00
 Code: ${unlockCode}
-
-If you need assistance please visit the Corporate Support Team on Level 32, Monday to Thursday between 9:30 am and 4:00 pm.
 
 Please make it a priority to collect this equipment as soon as possible. If you are having difficulty collecting this equipment, please reply to this email to make alternate arrangements.
 
