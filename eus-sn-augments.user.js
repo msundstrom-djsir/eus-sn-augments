@@ -215,9 +215,7 @@ Your requested hardware is now available for you to collect from the Level 31 IT
 To find the lockers from the Level 31 lift lobby, exit on the Sports and Experience Economy/Exhibition Street side. Turn left in to the corridor and look for the 'Tech Shop' sign between the seating booths. Additional details and visual instructions can be found here: <a title='KB0011364 : Where do I collect my computer hardware orders from at 121 Exhibition Street?' href='https://djpr.service-now.com/sp?id=kb_article_view&sysparm_article=KB0011364'>KB0011364 : Where do I collect my computer hardware orders from at 121 Exhibition Street?</a>
 
 Locker: 00
-Code: ${unlockCode}
-
-If you need assistance please visit the Corporate Support Team on Level 32, Monday to Thursday between 9:30 am and 4:00 pm.`
+Code: ${unlockCode}`
             },
             {
                 "icon": "icon-envelope-subscribe",
@@ -226,11 +224,12 @@ If you need assistance please visit the Corporate Support Team on Level 32, Mond
 
 Your requested hardware is now available for you to collect.
 
-Please see the Corporate Support Team on Level 32, Monday to Thursday between 9:30 am and 3:00 pm by ${collectBy} to collect your equipment. Please have your name and request number (${ritmNumber}) ready.`
+Please see the IT Operations Team on Level 32 @ Desk 129, Monday to Thursday between 9:30 am and 3:00 pm by ${collectBy} to collect your equipment. Please have your name and request number (${ritmNumber}) ready.`
             },
             {
                 "icon": "icon-mail",
                 "title": "Collection via 121.32 Mail Room",
+                "show": false,
                 "text": `Hi ${requestForFirstName},
 
 Your requested hardware is now available for you to collect.
@@ -279,14 +278,14 @@ Code: ${unlockCode}
 
 If you need assistance please visit the Corporate Support Team on Level 32, Monday to Thursday between 9:30 am and 4:00 pm.
 
-Please make it a priority to collect this equipment as soon as possible. If you are having difficulty collecting this equipment, please call the Corporate Support Team on 1800 370 724 to make alternate arrangements.
+Please make it a priority to collect this equipment as soon as possible. If you are having difficulty collecting this equipment, please reply to this email to make alternate arrangements.
 
 If the equipment is no longer required please let us know via return email.`
             },
             {
                 "icon": "icon-alert-triangle",
                 "title": "Windows 11 Delay",
-                "show": true,
+                "show": false,
                 "excludeLaptopMsg": true,
                 "text": `Hi ${requestForFirstName},
 
