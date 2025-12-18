@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DJSIR ServiceNow Hardware Order Augments
 // @namespace    https://djpr.service-now.com/
-// @version      0.5.9
+// @version      0.5.11
 // @description  Adds shortcuts to DJSIR ServiceNow Hardware fulfillment page
 // @author       Michell Sundstrom
 // @match        https://djpr.service-now.com/*
