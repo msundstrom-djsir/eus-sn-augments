@@ -45,7 +45,7 @@
         };
 
         let itemType = document.getElementById("sys_display.sc_req_item.cat_item");
-        if (itemType.value !== "Desktop Hardware Request") {
+        if (itemType.value !== "Request New Computer Hardware") {
             return false;
         };
 
