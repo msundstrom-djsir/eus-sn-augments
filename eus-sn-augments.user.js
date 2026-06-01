@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DJSIR ServiceNow Hardware Order Augments
 // @namespace    https://djpr.service-now.com/
-// @version      0.5.13
+// @version      0.5.14
 // @description  Adds shortcuts to DJSIR ServiceNow Hardware fulfillment page
 // @author       Michell Sundstrom
 // @match        https://djpr.service-now.com/*
@@ -140,8 +140,8 @@ Requested hardware:
             "Request ID": ritmNumber,
             "Order": hardwareList.join(", "),
             "Peripherals": formValues["Other Hardware Not Listed"],
-            "Contact Number": `'${formValues["Contact Number"]}`,
-            "Address": formValues["Delivery Address"],
+            "Contact Number": `'${formValues["Contact number"]}`,
+            "Address": formValues["Delivery address"],
             "Labels": " ",
             "Company": "Department of Jobs, Skills, Industry and Regions",
             "Charge Code": formValues["Legacy Charge Code"] || formValues["Charge Code"] || formValues["Charge code"]
