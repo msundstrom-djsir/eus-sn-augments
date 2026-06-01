@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DJSIR ServiceNow Hardware Order Augments
 // @namespace    https://djpr.service-now.com/
-// @version      0.5.11
+// @version      0.5.13
 // @description  Adds shortcuts to DJSIR ServiceNow Hardware fulfillment page
 // @author       Michell Sundstrom
 // @match        https://djpr.service-now.com/*
@@ -60,7 +60,7 @@
         let formFields = variableContainer.querySelectorAll(".form-control");
 
         variableContainer.querySelector("#img_c3cb6fa287ef15101a5cbae8dabb35c5").click();
-        let formWhitelist = ["Requested for", "Contact Number", "Delivery Address", "Old Computer Name",
+        let formWhitelist = ["Requested for", "Contact number", "Delivery address", "Old Computer Name",
                              "Replacement or Upgrade","Other Justification", "Commencement Date", "Additional comments",
                              "Charge Code", "Select Financial Delegate", "Other Hardware Not Listed", "Financial delegate", "Charge code", "Legacy Charge Code", "Legacy Select Financial Delegate"];
         let formValues = {};
@@ -92,8 +92,8 @@
         //
 
         let outputTextUserInfo = `Requested for: ${formValues["Requested for"]}
-Contact number: ${formValues["Contact Number"]}
-Delivery address: ${formValues["Delivery Address"]}
+Contact number: ${formValues["Contact number"]}
+Delivery address: ${formValues["Delivery address"]}
 
 Charge code: ${formValues["Legacy Charge Code"] || formValues["Charge Code"] || formValues["Charge code"]}
 Financial delegate: ${formValues["Select Financial Delegate"] || formValues["Financial delegate"] || formValues["Legacy Select Financial Delegate"]}
